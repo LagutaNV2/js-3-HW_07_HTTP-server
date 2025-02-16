@@ -11,6 +11,8 @@ const logger = pino(pinoPretty());
 app.use(cors());
 app.use(
   bodyParser.json({
+    // app.use(express.json()); аналог кода ниже
+
     type(req) {
       return true;
     },
