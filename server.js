@@ -11,13 +11,18 @@ const logger = pino(pinoPretty());
 app.use(cors());
 app.use(
   bodyParser.json({
-    // app.use(express.json()); аналог кода ниже
-
-    type(req) {
-      return true;
-    },
+    // type(req) {
+    //   return true;
+    // },
   })
 );
+app.use(express.json()); // аналог кода выше
+
+    // type(req) {
+    //   return true;
+    // },
+
+app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
   next();
