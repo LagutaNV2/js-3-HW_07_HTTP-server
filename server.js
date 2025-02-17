@@ -107,11 +107,13 @@ app.use(async (request, response) => {
     }
     case "updateById": {
       const ticket = tickets.find((ticket) => ticket.id === id);
-      const updateData = request.body;
+      // const updateData = request.body;
+      const updateData = request.body.data;
       if (ticket) {
         Object.assign(ticket, updateData);
         logger.info(`Ticket updated: ${JSON.stringify(ticket)}`);
-        response.send(JSON.stringify(tickets));
+        // response.send(JSON.stringify(tickets));
+        response.send(JSON.stringify(ticket));
       } else {
         logger.warn(`Ticket not found: ${id}`);
         response
