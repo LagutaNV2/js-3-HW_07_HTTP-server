@@ -18,11 +18,6 @@ app.use(
 );
 app.use(express.json()); // аналог кода выше
 
-    // type(req) {
-    //   return true;
-    // },
-
-app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
   next();
@@ -107,11 +102,11 @@ app.use(async (request, response) => {
     }
     case "updateById": {
       const ticket = tickets.find((ticket) => ticket.id === id);
-      // const updateData = request.body;
-      const updateData = request.body.data;
+      const updateData = request.body;
+      //const updateData = request.body.data;
       if (ticket) {
         Object.assign(ticket, updateData);
-        logger.info(`Ticket updated: ${JSON.stringify(ticket)}`);
+        logger.info(`Ticket updated: ${JSON.stringify(ticket)} --> ${JSON.stringify(updateData)}`);
         // response.send(JSON.stringify(tickets));
         response.send(JSON.stringify(ticket));
       } else {
